@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/sebastian-ch/upload-geojson#readme",
   "dependencies": {
+    "@mapbox/geojsonhint": "^2.0.1",
     "ejs": "^2.5.6",
     "express": "^4.15.2"
   },
