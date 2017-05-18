@@ -2,64 +2,78 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css" rel='stylesheet'>
-    <link href='https://api.mapbox.com/mapbox.js/v3.1.0/mapbox.css' rel='stylesheet' />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css" rel='stylesheet'>
+  <link href='https://api.mapbox.com/mapbox.js/v3.1.0/mapbox.css' rel='stylesheet' />
 
 
-    <style>
-        body {
-            padding: 0px;
-        }
+  <style>
+  /*  body {
+      padding: 0px;
+    } */
 
-        #drop_zone {
-            border: 1px solid blue;
-            width: 80%;
-            height: 100px;
-            margin: 10px auto 10px auto;
-            text-align: center;
-        }
+    #drop_zone {
+      border: 1px solid blue;
+      width: 80%;
+      height: 100px;
+      margin: 10px auto 10px auto;
+      text-align: center;
+    }
 
-        .sidebar {
-            border-right: 1px solid black;
-            border-top: 1px solid black;
-        }
+    .sidebar {
+      border-right: 1px solid black;
+      /*border-top: 1px solid black; */
+    }
 
-        .main {}
+    #error-header {
+      display: none;
+    }
 
-    </style>
+    #wrap {
+      margin: 0;
+    }
+
+
+  </style>
 </head>
 
 <body>
 
-    <div class="columns is-gapless">
-        <div class="column sidebar is-3 hero is-fullheight">
-            <div id='drop_zone'>Drop files here</div>
-            <div><output id="list"></output></div>
-        </div>
-        <div class="column hero is-fullheight main" id='map'>
-            <!--<output id="list"></output></div>
-            <div id='map'></div> -->
-        </div>
+  <div class="columns is-gapless" id='wrap'>
+    <div class="column sidebar is-3 hero is-fullheight">
+      <div class='content'>
 
+        <h2>GeoJSON Viewer</h2>
+        <h4>This project is still a work in progress. It will validate a geojson, display it on the map, and preview the properties</h4>
+        <div id='drop_zone'>Drop files here</div>
+        <h4 id='error-header'>Invalid GeoJSON</h4>
+        <div id='error-message'></div>
+        <div><output id="list"></output></div>
+      </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src='https://api.mapbox.com/mapbox.js/v3.1.0/mapbox.js'></script>
 
-    <script src='util/utils.js'></script>
+    <div class="column hero is-fullheight main" id='map'></div>
+  </div>
 
-    <script>
-        var dropZone = document.getElementById('drop_zone');
-        dropZone.addEventListener('dragover', handleDragOver, false);
-        dropZone.addEventListener('drop', handleFileSelect, false);
-        dropZone.addEventListener('dragleave', handleDragLeave, false);
 
-        L.mapbox.accessToken = 'pk.eyJ1Ijoic2ViYXN0aWFuLWNoIiwiYSI6ImNpejkxdzZ5YzAxa2gyd21udGpmaGU0dTgifQ.IrEd_tvrl6MuypVNUGU5SQ';
-        L.mapbox.map('map', 'mapbox.streets')
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src='https://api.mapbox.com/mapbox.js/v3.1.0/mapbox.js'></script>
+  <script src='https://unpkg.com/@mapbox/geojsonhint@latest/geojsonhint.js'></script>
 
-    </script>
+  <script src='util/utils.js'></script>
+
+  <script>
+    var dropZone = document.getElementById('drop_zone');
+    dropZone.addEventListener('dragover', handleDragOver, false);
+    dropZone.addEventListener('drop', handleFileSelect, false);
+    dropZone.addEventListener('dragleave', handleDragLeave, false);
+
+
+    L.mapbox.accessToken = 'pk.eyJ1Ijoic2ViYXN0aWFuLWNoIiwiYSI6ImNpejkxdzZ5YzAxa2gyd21udGpmaGU0dTgifQ.IrEd_tvrl6MuypVNUGU5SQ';
+    L.mapbox.map('map', 'mapbox.streets')
+  </script>
 
 </body>
 
