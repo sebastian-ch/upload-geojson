@@ -28,11 +28,11 @@ function handleFileSelect(evt) {
   fr.readAsText(files[0]);
 
   fr.onload = function(e) {
-    //console.log(e.target.result);
 
-    var result = e.target.result;
+    var result = JSON.parse(e.target.result);
 
-    //var result = JSON.parse(e.target.result);
+    var dataLayer = L.geoJson(result);
+    dataLayer.addTo(map);
 
     var validatGeoJson = geojsonhint.hint(result);
 
@@ -43,11 +43,10 @@ function handleFileSelect(evt) {
       });
       $('#error-header').show();
       $('#error-message').html(message);
-    } else {
-      var formatted = JSON.stringify(result, null, 2);
-      console.log(result);
+    }
+    var formatted = JSON.stringify(result, null, 2);
 
-      $.ajax({
+    $.ajax({
         type: 'POST',
         url: '/upload',
         json: true,
@@ -56,11 +55,9 @@ function handleFileSelect(evt) {
           'fileInput': result
         },
         success: function(data) {
-          console.log(result);
           console.log('upload successful!');
         }
-      });
-    }
+    });
     document.getElementById('list').innerHTML = output.join(',<br> ');
   };
 }
@@ -77,8 +74,4 @@ function handleDragLeave(evt) {
   evt.stopPropagation();
   evt.preventDefault();
   $("#drop_zone").css("background-color", '');
-}
-
-function addInputToMap(result) {
-
 }
