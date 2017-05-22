@@ -23,10 +23,12 @@ app.use(bodyParser.urlencoded({
 app.use("/util", express.static(__dirname + "/util"));
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
+var port = process.env.PORT || 8080;
+
 app.set('view engine', 'ejs');
 
-app.listen(3000, function() {
-  console.log('listening on 3000');
+app.listen(port, function() {
+  console.log('listening on ' + port);
 });
 
 app.get('/', function(req, res) {
