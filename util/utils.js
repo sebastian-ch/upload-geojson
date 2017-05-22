@@ -33,13 +33,14 @@ function handleFileSelect(evt) {
 
     var dataLayer = L.geoJson(result);
     dataLayer.addTo(map);
+    map.fitBounds(dataLayer.getBounds());
 
     var validatGeoJson = geojsonhint.hint(result);
 
     if (validatGeoJson.length > 0) {
 
       var message = validatGeoJson.map(function(error) {
-        return 'Line ' + error.line + ': ' + error.message;
+        return 'Line ' + error.line + ': ' + error.message + '<br>';
       });
       $('#error-header').show();
       $('#error-message').html(message);

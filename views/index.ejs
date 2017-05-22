@@ -10,7 +10,7 @@
 
 
   <style>
-  /*  body {
+    /*  body {
       padding: 0px;
     } */
 
@@ -24,7 +24,10 @@
 
     .sidebar {
       border-right: 1px solid black;
-      /*border-top: 1px solid black; */
+      overflow: scroll;
+    }
+    #error-message {
+      overflow: scroll;
     }
 
     #error-header {
@@ -34,8 +37,6 @@
     #wrap {
       margin: 0;
     }
-
-
   </style>
 </head>
 
@@ -49,7 +50,9 @@
         <h4>This project is still a work in progress. It will validate a geojson, display it on the map, and preview the properties</h4>
         <div id='drop_zone'>Drop files here</div>
         <h4 id='error-header'>Invalid GeoJSON</h4>
-        <div id='error-message'></div>
+        <div class='content is-small'>
+          <div id='error-message'></div>
+        </div>
         <div><output id="list"></output></div>
       </div>
     </div>
