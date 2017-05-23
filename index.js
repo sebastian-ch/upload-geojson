@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({
 app.use("/util", express.static(__dirname + "/util"));
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
-var port = process.env.PORT || 8080;
+var port = 8080;
 
 app.set('view engine', 'ejs');
 
