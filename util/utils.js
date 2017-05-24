@@ -48,16 +48,16 @@ function handleFileSelect(evt) {
     var formatted = JSON.stringify(result, null, 2);
 
     $.ajax({
-        type: 'POST',
-        url: '/upload',
-        json: true,
-        data: {
-          'fileName': output[0],
-          'fileInput': result
-        },
-        success: function(data) {
-          console.log('upload successful!');
-        }
+      type: 'POST',
+      url: '/upload',
+      json: true,
+      data: {
+        'fileName': output[0],
+        'fileInput': result
+      },
+      success: function(data) {
+        console.log('upload successful!');
+      }
     });
     document.getElementById('list').innerHTML = output.join(',<br> ');
   };
